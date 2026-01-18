@@ -6,14 +6,12 @@ function PostsList() {
   const [posts, setPosts] = useState([]);
   const [, setLoading] = useState(true);
   const [, setError] = useState(null);
-  console.log("API_URL", API_URL)
 
   // Fetch posts from API
     useEffect(() => {
       async function loadPosts() {
         try {
-          // const response = await fetch(API_URL);
-          const response = await fetch("http://localhost:3000/api/v1/posts");
+          const response = await fetch(API_URL);
           if(response.ok) {
             const json = await response.json();
             setPosts(json);
