@@ -10,6 +10,8 @@ class Api::V1::PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    # test for loading
+    # sleep 5
     render json: @post
   end
 
