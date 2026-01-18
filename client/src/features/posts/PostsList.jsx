@@ -6,6 +6,7 @@ function PostsList() {
   const [posts, setPosts] = useState([]);
   const [, setLoading] = useState(true);
   const [, setError] = useState(null);
+  console.log("API_URL", API_URL)
 
   // Fetch posts from API
     useEffect(() => {
