@@ -9,29 +9,29 @@ function PostsList() {
   const [, setError] = useState(null);
 
   // Fetch posts from API
-    useEffect(() => {
-      async function loadPosts() {
-        try {
-          const response = await fetch(API_URL);
-          if(response.ok) {
-            const json = await response.json();
-            setPosts(json);
-          }
-          else {
-            throw response;
-          }
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        const response = await fetch(API_URL);
+        if(response.ok) {
+          const json = await response.json();
+          setPosts(json);
         }
-        catch (e) {
-          const msg = "An unknown error has occurred ...";
-          setError(msg);
-          console.log(msg, e);
-        }
-        finally {
-          setLoading(false);
+        else {
+          throw response;
         }
       }
-      loadPosts();
-    }, []);
+      catch (e) {
+        const msg = "An unknown error has occurred ...";
+        setError(msg);
+        console.log(msg, e);
+      }
+      finally {
+        setLoading(false);
+      }
+    }
+    loadPosts();
+  }, []);
 
   return (
     <div>
