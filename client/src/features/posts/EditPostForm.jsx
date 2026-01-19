@@ -30,31 +30,29 @@ function EditPostForm() {
     fetchCurrentPost();
   }, [id]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title: post.title,
-          body: post.body,
+          body: post.body
         }),
       });
-      if (response.ok) {
-        const json = await response.json();
-        console.log("Success:", json);
-        navigate(`/posts/${id}`);
-      } else {
-        throw response;
-      }
-    } catch (e) {
-      console.log("An error occurred:", e);
+
+      if (!response.ok) throw new Error("Server error");
+
+      const { id } = await response.json();
+      navigate(`/posts/${id}`);
+    } catch (err) {
+      console.error("Failed to create post:", err);
     }
-  };
+  }
+  
 
   if (!post) return <h2>Loading...</h2>;
 
