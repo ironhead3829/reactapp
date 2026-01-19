@@ -7,8 +7,6 @@ const NewPostForm = () => {
   const [body, setBody] = useState("");
   const navigate = useNavigate();
 
-  console.log("API_URL", API_URL);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
